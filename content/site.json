@@ -9,5 +9,40 @@
   "links": {
     "github": "TODO(ayomide): https://github.com/<username>",
     "linkedin": "TODO(ayomide): https://www.linkedin.com/in/<username>"
-  }
+  },
+  "skills": [
+    {
+      "group": "Web",
+      "items": ["Next.js", "TypeScript", "Node.js", "Express", "Tailwind CSS"]
+    },
+    {
+      "group": "Data & backend",
+      "items": ["Postgres", "Supabase (RLS)", "SQLite", "Flask"]
+    },
+    {
+      "group": "Machine learning",
+      "items": [
+        "Logistic Regression",
+        "Random Forest",
+        "XGBoost",
+        "Ensembles (soft voting)",
+        "CRISP-DM"
+      ]
+    },
+    { "group": "Payments", "items": ["Paystack"] }
+  ],
+  "leadership": [
+    {
+      "title": "Faculty President, School of Computing",
+      "org": "Federal University of Technology, Akure",
+      "period": "TODO(ayomide): years held",
+      "summary": "TODO(ayomide): one or two sentences on what you led and delivered."
+    },
+    {
+      "title": "Chairman, ACOMS Electoral Committee",
+      "org": "Association of Computing Students (ACOMS), FUTA",
+      "period": "TODO(ayomide): session / year",
+      "summary": "TODO(ayomide): one or two sentences on the election you ran."
+    }
+  ]
 }

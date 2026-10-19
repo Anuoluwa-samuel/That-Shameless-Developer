@@ -1,8 +1,8 @@
 import raw from "@/content/site.json";
+import { siteSchema, type SiteConfig } from "./schema";
 
-export type SiteConfig = typeof raw;
-
-export const site: SiteConfig = raw;
+/** Validated at build time; edited through the Keystatic admin (content/site.json). */
+export const site: SiteConfig = siteSchema.parse(raw);
 
 export const isTodo = (value: string): boolean => value.startsWith("TODO(");
 
