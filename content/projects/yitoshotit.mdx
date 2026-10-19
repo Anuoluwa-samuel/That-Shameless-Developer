@@ -1,7 +1,7 @@
 ---
 title: "YIT0 SHOT IT \u2014 Photographer Portfolio"
 summary: "A live photographer portfolio with an admin dashboard for enquiries, gallery uploads and services."
-status: live
+status: "live"
 tags:
   - Full-stack
   - Design
@@ -10,48 +10,62 @@ order: 1
 date: "TODO(ayomide): YYYY-MM"
 role: "Design and build, end to end"
 stack:
+  - "Next.js"
   - "Node.js"
   - "Express"
-  - "SQLite"
-  - "Next.js"
+  - "SQLite (libSQL / Turso)"
+  - "Vercel Blob"
+  - "Vercel"
+metrics:
+  - label: "Page render from Lagos, database in Oregon"
+    value: "2.02 s"
+  - label: "Page render from Lagos, database in Ireland"
+    value: "0.97 s"
 links:
-  - label: "Live site"
+  - label: "yit0shotit.com"
     href: "https://yit0shotit.com"
     kind: live
+diagram: "flowchart TD\n  Visitor[\"Visitor\"] --> Pages[\"Next.js pages on Vercel\"]\n  Owner[\"Owner\"] --> Admin[\"Admin dashboard and Express API\"]\n  Pages --> DB[\"Turso libSQL, Ireland\"]\n  Admin --> DB\n  Admin --> Blob[\"Vercel Blob: photos\"]"
 ---
 
 ## Overview
 
-TODO(ayomide): write this section.
+A live portfolio site for a photographer, with a private admin dashboard where the owner manages enquiries, gallery uploads and services without touching code. It is deployed and in use at yit0shotit.com.
 
 ## Problem
 
-TODO(ayomide): write this section.
+A photographer needs a site that shows photographs quickly and lets the owner update galleries and answer enquiries on their own. Photographs are heavy, and the owner is not a developer, so both performance and the admin experience matter.
 
 ## My role
 
-TODO(ayomide): write this section.
+I designed and built all of it: the public site, the admin dashboard, the Express API, the database schema, file uploads, deployment and the security hardening of the admin.
 
 ## Architecture
 
-TODO(ayomide): write this section.
+Public pages are rendered by Next.js on Vercel. An Express API, mounted inside the Vercel deployment, powers the admin dashboard. Data lives in Turso (libSQL, a SQLite-compatible database) and uploaded photographs live in Vercel Blob.
 
 ## Key decisions & trade-offs
 
-TODO(ayomide): write this section.
+- **Put the database next to the compute.** Moving Turso from Oregon to Ireland and pinning the functions to the nearby region cut page render, measured from Lagos, from 2.02 s to 0.97 s. The trade-off is one fixed region.
+- **Photographs in object storage, not the database.** Blob stores the files and the database stores their URLs. Uploads are shrunk in the browser first so they stay under Vercel's 4.5 MB request limit.
+- **Admin hardening.** Production refuses to start with a weak session secret, rate limits are stored in the database so they hold across serverless instances, and a password change signs out other devices.
+- **Admin pages kept out of `public/`.** Anything in `public/` is served by the CDN before any function runs, which would bypass the login check.
+- **One Express codebase for local and Vercel.** It keeps local development simple. The trade-off is that Next's file tracing cannot see packages loaded through the Express layer, so those dependencies are traced explicitly at build time.
 
 ## Results
 
-TODO(ayomide): write this section.
+The site is live and the owner manages content through the dashboard. The measured result is the page-render improvement above: 2.02 s down to 0.97 s from Lagos.
 
 ## What I'd do next
 
-TODO(ayomide): write this section.
+- Add automated tests around admin login and the rate limits.
+- Redirect the retired Vercel URL to the custom domain.
+- Add basic analytics so the owner can see which galleries get attention.
 
 ## Stack
 
-TODO(ayomide): write this section.
+Next.js, Node.js, Express, SQLite via libSQL on Turso, Vercel Blob, and Vercel.
 
 ## Links
 
-TODO(ayomide): write this section.
+The live site is at yit0shotit.com.

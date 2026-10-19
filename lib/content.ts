@@ -57,3 +57,24 @@ export async function getProject(slug: string): Promise<Project | null> {
 export async function getFeaturedProjects(limit = 3): Promise<Project[]> {
   return (await getProjects()).filter((p) => p.featured).slice(0, limit);
 }
+
+export type Section = { title: string; id: string; content: string };
+
+export function slugify(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+/** Splits a case-study body on its H2 headings. Anything before the first H2 is dropped. */
+export function splitSections(body: string): Section[] {
+  const parts = body.split(/^##\s+(.+?)\s*$/m);
+  const sections: Section[] = [];
+  for (let i = 1; i < parts.length; i += 2) {
+    const title = parts[i] ?? "";
+    sections.push({ title, id: slugify(title), content: (parts[i + 1] ?? "").trim() });
+  }
+  return sections;
+}

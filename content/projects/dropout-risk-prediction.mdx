@@ -1,57 +1,80 @@
 ---
 title: "Student Dropout Risk Prediction System"
-summary: "Final-year project: ML models trained on primary survey data from southwest Nigerian universities, deployed as a Flask app."
-status: shipped
+summary: "Final-year project: ML models trained on survey data from southwest Nigerian universities, deployed as a Flask web app."
+status: "shipped"
 tags:
   - ML
 featured: true
 order: 2
 date: "TODO(ayomide): YYYY-MM"
-role: "Researcher and engineer (final-year project)"
+role: "Researcher and engineer on my final-year project: data, modelling and deployment"
 stack:
   - "Python"
-  - "scikit-learn"
+  - "Logistic Regression"
+  - "Random Forest"
   - "XGBoost"
+  - "Soft-voting ensemble"
   - "Flask"
 metrics:
-  - label: "Random Forest accuracy (augmented data)"
+  - label: "Random Forest accuracy, augmented data"
     value: "94.1%"
-  - label: "Random Forest recall (augmented data)"
+  - label: "Random Forest recall, augmented data"
     value: "98.0%"
+links:
+  - label: "Repository"
+    href: "TODO(ayomide): repo URL"
+    kind: repo
+  - label: "Demo"
+    href: "TODO(ayomide): demo URL, if hosted"
+    kind: live
+diagram: "flowchart TD\n  Survey[\"Primary survey data\"] --> Prep[\"Cleaning and encoding\"]\n  Prep --> Aug[\"Data augmentation\"]\n  Aug --> Models[\"Logistic Regression, Random Forest, XGBoost, soft-voting ensemble\"]\n  Models --> Eval[\"Evaluation\"]\n  Eval --> App[\"Flask web app\"]"
 ---
 
 ## Overview
 
-TODO(ayomide): write this section.
+A system that predicts which students are at risk of dropping out of university, so that support can reach them early. It was my final-year project. I trained and compared four models on primary survey data from southwest Nigerian universities and deployed the result as a Flask web app.
 
 ## Problem
 
-TODO(ayomide): write this section.
+The goal was to estimate a student's dropout risk early enough to act on it, using data collected from the students' own context in southwest Nigeria rather than a foreign dataset.
 
 ## My role
 
-TODO(ayomide): write this section.
+I ran the whole project: designing the approach with CRISP-DM, working with the survey data, building and comparing the models, and deploying the Flask application.
 
 ## Architecture
 
-TODO(ayomide): write this section.
+The pipeline follows CRISP-DM:
+
+1. **Data:** primary survey responses from southwest Nigerian universities.
+2. **Preparation:** cleaning and encoding, then augmentation to enlarge the training data.
+3. **Modelling:** Logistic Regression, Random Forest, XGBoost, and a soft-voting ensemble of them.
+4. **Evaluation:** accuracy and recall on each model.
+5. **Deployment:** a Flask web app that takes a student's answers and returns a risk prediction.
 
 ## Key decisions & trade-offs
 
-TODO(ayomide): write this section.
+- **Primary data over a public dataset.** The survey reflects the students and institutions the system is meant for. The trade-off is a smaller sample than a public dataset, which is why augmentation was used.
+- **Recall as a headline metric.** Missing a student who is genuinely at risk is the costly error, so recall matters alongside accuracy.
+- **Four models compared, including an ensemble.** Starting from an interpretable baseline (Logistic Regression) and adding Random Forest, XGBoost and a soft-voting ensemble made the comparison honest.
+- **Flask for deployment.** It is lightweight and enough to turn a trained model into a usable web tool.
 
 ## Results
 
-TODO(ayomide): write this section.
+On augmented data, the Random Forest reached **94.1% accuracy and 98.0% recall**.
+
+One caveat I would state in any write-up: these figures are measured on augmented data, so they should not be read as performance on unseen real students. TODO(ayomide): add the real-only test results if you have them.
 
 ## What I'd do next
 
-TODO(ayomide): write this section.
+- Report results on a held-out set of real survey responses only.
+- Add explanations for each prediction, such as feature importances, so staff can see why a student was flagged.
+- Collect more real responses across more institutions and re-evaluate.
 
 ## Stack
 
-TODO(ayomide): write this section.
+Python, Logistic Regression, Random Forest, XGBoost, a soft-voting ensemble, and Flask. TODO(ayomide): name the libraries and notebook tooling you used.
 
 ## Links
 
-TODO(ayomide): write this section.
+Repository and demo links are added when available.

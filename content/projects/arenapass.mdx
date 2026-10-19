@@ -1,7 +1,7 @@
 ---
 title: "ArenaPass"
 summary: "Arena and venue ticketing platform with three role-based dashboards. In active development."
-status: in-development
+status: "in-development"
 tags:
   - Full-stack
 featured: true
@@ -11,43 +11,60 @@ role: "Full-stack developer (TODO(ayomide): confirm solo or team)"
 stack:
   - "Next.js 14"
   - "TypeScript"
-  - "Supabase"
-  - "Postgres (RLS)"
+  - "Supabase Auth"
+  - "Postgres (Row Level Security)"
   - "Paystack"
+links:
+  - label: "Repository"
+    href: "TODO(ayomide): repo URL"
+    kind: repo
+  - label: "Live site"
+    href: "TODO(ayomide): URL, if deployed"
+    kind: live
+diagram: "flowchart TD\n  Browser[\"Browser\"] --> MW[\"Next.js middleware: role gate\"]\n  MW --> App[\"App Router: buyer, arena admin, platform admin\"]\n  App --> Auth[\"Supabase Auth\"]\n  App --> DB[\"Postgres with RLS\"]\n  App --> Pay[\"Paystack checkout\"]"
 ---
 
 ## Overview
 
-TODO(ayomide): write this section.
+ArenaPass is a ticketing platform for arenas and venues. Buyers find events and pay for tickets, arena admins run their own venues, and a platform admin oversees the whole marketplace.
+
+**Status: in active development.** It has not launched, so this write-up describes the design and the decisions made so far, not outcomes.
 
 ## Problem
 
-TODO(ayomide): write this section.
+Ticketing for a venue has three kinds of user with very different powers: people buying tickets, staff running one specific arena, and the platform operator. The hard part is not drawing three dashboards. It is guaranteeing that each user can only see and change what their role allows, even when a page has a bug.
 
 ## My role
 
-TODO(ayomide): write this section.
+I am building the product end to end: the data model, the authentication and role system, the three dashboards, and the payment flow. TODO(ayomide): confirm scope, and whether you are solo or part of a team.
 
 ## Architecture
 
-TODO(ayomide): write this section.
+A single Next.js 14 App Router application serves all three dashboards. Supabase provides authentication and the Postgres database. Paystack handles payment.
+
+Every request passes through middleware that reads the session and the user's role and routes them to the right dashboard. Data access then goes through Supabase, where Row Level Security policies apply the same rules a second time.
 
 ## Key decisions & trade-offs
 
-TODO(ayomide): write this section.
+- **Roles enforced twice, at middleware and in the database.** Middleware gives fast redirects and a clean experience. Row Level Security means a missing check in application code cannot leak data, because Postgres refuses the query. The cost is that each rule is written in two places and the policies need their own tests.
+- **One app with role-scoped routes, not three apps.** The dashboards share components, types and the data model. The trade-off is that route boundaries have to be kept strict so one role's code never ships to another.
+- **Supabase instead of hand-rolled auth.** Auth identities plug straight into RLS policies, which removes a whole class of glue code. The trade-off is coupling to Supabase and Postgres policy syntax.
+- **Paystack for payments.** It supports the payment methods buyers in Nigeria actually use.
 
 ## Results
 
-TODO(ayomide): write this section.
+Not launched yet, so there are no usage or outcome metrics to report. TODO(ayomide): add the current milestone (for example, which dashboards and flows work end to end).
 
 ## What I'd do next
 
-TODO(ayomide): write this section.
+- Write automated tests that sign in as each role and assert what RLS allows and denies.
+- Run a pilot with one real venue and measure the buying flow.
+- Add an audit log for platform-admin actions.
 
 ## Stack
 
-TODO(ayomide): write this section.
+Next.js 14, TypeScript, Supabase (Auth and Postgres with Row Level Security) and Paystack.
 
 ## Links
 
-TODO(ayomide): write this section.
+Repository and live links are added when available.

@@ -26,3 +26,10 @@ Every placeholder is marked `TODO(ayomide):` in the source. Search for it to fin
 - [ ] Dropout Risk: repo/demo URL, the dataset size and any further results you want cited
 - [ ] YIT0 SHOT IT: I linked https://yit0shotit.com (with a zero); your brief said yitoshotit.vercel.app. Confirm which is canonical.
 - [ ] Hero: confirm graduation status (the brief says 2024/2025 session; it is now late 2026)
+
+## Case-study details I could not know (search `TODO(ayomide)` in `content/projects/`)
+
+- [ ] ArenaPass: scope (solo or team), milestone reached so far
+- [ ] Football E-Ticketing: confirm the Problem section matches your PRD; phase names of the 12-week plan; intended web stack; whether anything was built or piloted
+- [ ] Dropout Risk: real-only test results (the 94.1% / 98.0% figures are on augmented data and the page says so); libraries and tooling used
+- [ ] YIT0 SHOT IT: the 2.02 s and 0.97 s page-render figures come from your own measurement notes (Lagos, before/after moving Turso to Ireland). Confirm you are happy to publish them.

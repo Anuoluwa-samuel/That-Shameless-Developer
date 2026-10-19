@@ -1,51 +1,68 @@
 ---
 title: "Football Organisation E-Ticketing System"
-summary: "Product and systems-design case study: time-gated ticket sales, QR tickets and gate validation, with a full PRD and 12-week plan."
-status: case-study
+summary: "Product and systems-design case study: time-gated ticket sales, QR tickets and gate validation, with a full PRD and a 12-week plan."
+status: "case-study"
 tags:
   - Full-stack
   - Design
 featured: false
 order: 4
 date: "TODO(ayomide): YYYY-MM"
-role: "Product and systems designer (PRD author)"
+role: "Product and systems designer: wrote the full PRD and the 12-week phased plan"
 stack:
   - "Paystack"
-  - "QR codes"
+  - "QR tickets"
+  - "Gate validation"
+links:
+  - label: "Product requirements document"
+    href: "TODO(ayomide): PRD link or PDF"
+    kind: docs
+diagram: "flowchart TD\n  Session[\"Session scheduled\"] --> Window[\"Purchase window: opens 60 min before, lasts 20 min\"]\n  Window --> Pay[\"Paystack payment\"]\n  Pay --> Ticket[\"QR ticket issued\"]\n  Ticket --> Gate[\"Gate scan\"]\n  Gate --> Check{\"Valid and unused?\"}\n  Check -->|\"yes\"| Admit[\"Admit and mark used\"]\n  Check -->|\"no\"| Reject[\"Reject\"]"
 ---
 
 ## Overview
 
-TODO(ayomide): write this section.
+An e-ticketing system for a football organisation, designed around one unusual rule: tickets for a session can only be bought inside a short window shortly before it starts. Buyers pay with Paystack, receive a QR ticket, and are admitted by a gate scan.
+
+This is a product and systems-design case study. My deliverables were the full product requirements document (PRD) and a 12-week phased delivery plan.
 
 ## Problem
 
-TODO(ayomide): write this section.
+Selling tickets for matches and sessions raises three problems at once: controlling who can buy and when, making sure a ticket cannot be reused or faked, and letting gate staff check people in quickly. TODO(ayomide): confirm these match the motivations written in your PRD.
 
 ## My role
 
-TODO(ayomide): write this section.
+I owned the product thinking end to end: requirements, user flows, the purchase-window rule, the ticket and gate-validation design, and the phased plan. I wrote the PRD in full.
 
 ## Architecture
 
-TODO(ayomide): write this section.
+The flow runs from the session schedule to the gate:
+
+1. Each session has a purchase window. The example in the PRD is a 20-minute window that opens one hour before the session.
+2. A buyer pays through Paystack inside the window.
+3. A QR ticket is generated for the purchase.
+4. At the gate, the scan checks that the ticket is valid and unused, then marks it used.
 
 ## Key decisions & trade-offs
 
-TODO(ayomide): write this section.
+- **Time-gated purchase window.** The server decides whether the window is open, never the buyer's device clock. This keeps the rule enforceable. The trade-off is that a short window concentrates demand, so the system must handle a burst.
+- **QR tickets validated against the server.** The gate checks the ticket's state rather than trusting the code alone, so a photographed or duplicated QR can be admitted only once. The trade-off is that the gate needs connectivity, or a defined offline fallback.
+- **A 12-week phased plan.** Delivery is split into phases so a usable core can ship before secondary features. TODO(ayomide): add the phase names and what each ships.
 
 ## Results
 
-TODO(ayomide): write this section.
+This is a design deliverable, so there are no production metrics. What exists is a complete PRD and a 12-week phased plan. TODO(ayomide): state whether any part has been built or piloted.
 
 ## What I'd do next
 
-TODO(ayomide): write this section.
+- Prototype the purchase window and gate scan, and load-test the opening of a window.
+- Define the offline fallback for gates with poor connectivity.
+- Pilot with one real session before wider rollout.
 
 ## Stack
 
-TODO(ayomide): write this section.
+Paystack for payments, QR code tickets, and server-side gate validation. TODO(ayomide): add the intended web stack from the PRD.
 
 ## Links
 
-TODO(ayomide): write this section.
+The PRD is linked when available.
