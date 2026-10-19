@@ -1,14 +1,20 @@
-import { Container } from "@/components/layout/container";
+import { ContactCTA } from "@/components/home/contact-cta";
+import { FeaturedProjects } from "@/components/home/featured-projects";
+import { Hero } from "@/components/home/hero";
+import { LeadershipBlock } from "@/components/home/leadership-block";
+import { SkillsStrip } from "@/components/home/skills-strip";
+import { getFeaturedProjects } from "@/lib/content";
 import { site } from "@/lib/site";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const featured = await getFeaturedProjects(3);
   return (
-    <Container className="py-24">
-      <p className="text-accent font-mono text-xs tracking-widest uppercase">
-        {site.role}
-      </p>
-      <h1 className="font-display mt-4 text-4xl">{site.name}</h1>
-      <p className="text-muted mt-6 max-w-xl text-lg">{site.positioning}</p>
-    </Container>
+    <>
+      <Hero />
+      <FeaturedProjects projects={featured} />
+      <SkillsStrip skills={site.skills} />
+      <LeadershipBlock leadership={site.leadership} />
+      <ContactCTA />
+    </>
   );
 }
