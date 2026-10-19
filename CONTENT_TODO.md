@@ -33,3 +33,11 @@ Every placeholder is marked `TODO(ayomide):` in the source. Search for it to fin
 - [ ] Football E-Ticketing: confirm the Problem section matches your PRD; phase names of the 12-week plan; intended web stack; whether anything was built or piloted
 - [ ] Dropout Risk: real-only test results (the 94.1% / 98.0% figures are on augmented data and the page says so); libraries and tooling used
 - [ ] YIT0 SHOT IT: the 2.02 s and 0.97 s page-render figures come from your own measurement notes (Lagos, before/after moving Turso to Ireland). Confirm you are happy to publish them.
+
+## About, CV and contact
+
+- [ ] About story: one personal paragraph (placeholder is hidden until you replace it, in /keystatic > Site settings)
+- [ ] Education: years attended, exact degree title, class of degree, graduation year
+- [ ] Experience (CV): add internships/jobs, if any (empty today, so the section is hidden)
+- [ ] Replace `public/cv.pdf` if you prefer your own layout. Otherwise run `npm run build && npm run cv:pdf` after editing content, to regenerate it from the web résumé.
+- [ ] Resend: set `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` on Vercel (until then the form shows the mailto fallback)

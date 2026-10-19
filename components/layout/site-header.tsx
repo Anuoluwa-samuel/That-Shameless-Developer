@@ -6,7 +6,7 @@ import { ThemeToggle } from "./theme-toggle";
 
 export function SiteHeader() {
   return (
-    <header className="bg-bg/85 border-border sticky top-0 z-40 border-b backdrop-blur">
+    <header className="bg-bg/85 border-border sticky top-0 z-40 border-b backdrop-blur print:hidden">
       <Container className="flex h-16 items-center justify-between gap-2">
         <Link href="/" className="font-display text-lg tracking-tight">
           {site.shortName}

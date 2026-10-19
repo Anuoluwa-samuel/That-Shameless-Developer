@@ -1,9 +1,11 @@
-import { isTodo } from "./site";
-
-/** Returns the text, or null while it is still a TODO(ayomide) placeholder. */
+/**
+ * Strips any `TODO(ayomide): ...` placeholder from the end of a value, so unfinished content
+ * never shows on the public site. Returns null when nothing real is left.
+ */
 export function clean(value: string | null | undefined): string | null {
-  if (!value || isTodo(value)) return null;
-  return value;
+  if (!value) return null;
+  const real = value.replace(/\s*TODO\(ayomide\):[\s\S]*$/, "").trim();
+  return real === "" ? null : real;
 }
 
 const STATUS_LABEL = {

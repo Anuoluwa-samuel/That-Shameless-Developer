@@ -8,7 +8,7 @@ export function SiteFooter() {
   ].filter((l) => !isTodo(l.href));
 
   return (
-    <footer className="border-border mt-24 border-t py-10">
+    <footer className="border-border mt-24 border-t py-10 print:hidden">
       <Container className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-muted font-mono text-xs">
           © {new Date().getFullYear()} {site.name}

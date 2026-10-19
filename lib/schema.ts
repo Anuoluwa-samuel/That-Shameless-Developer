@@ -65,6 +65,31 @@ export const siteSchema = z.object({
   skills: z
     .array(z.object({ group: z.string().min(1), items: z.array(z.string().min(1)) }))
     .default([]),
+  /** Paragraphs separated by blank lines. TODO(ayomide) paragraphs are hidden on the public site. */
+  story: z.string().default(""),
+  education: z
+    .array(
+      z.object({
+        school: z.string().min(1),
+        degree: z.string().min(1),
+        period: z.string().default(""),
+        note: z.string().default(""),
+      }),
+    )
+    .default([]),
+  experience: z
+    .array(
+      z.object({
+        role: z.string().min(1),
+        org: z.string().min(1),
+        period: z.string().default(""),
+        summary: z.string().default(""),
+      }),
+    )
+    .default([]),
+  howIWork: z
+    .array(z.object({ title: z.string().min(1), text: z.string().min(1) }))
+    .default([]),
   leadership: z
     .array(
       z.object({

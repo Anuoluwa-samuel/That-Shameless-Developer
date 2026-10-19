@@ -113,6 +113,36 @@ export default config({
           }),
           { label: "Skills", itemLabel: (p) => p.fields.group.value },
         ),
+        story: fields.text({
+          label: "About story",
+          description: "Paragraphs separated by a blank line.",
+          multiline: true,
+        }),
+        education: fields.array(
+          fields.object({
+            school: fields.text({ label: "School" }),
+            degree: fields.text({ label: "Degree" }),
+            period: fields.text({ label: "Period" }),
+            note: fields.text({ label: "Note", multiline: true }),
+          }),
+          { label: "Education", itemLabel: (p) => p.fields.school.value },
+        ),
+        experience: fields.array(
+          fields.object({
+            role: fields.text({ label: "Role" }),
+            org: fields.text({ label: "Organisation" }),
+            period: fields.text({ label: "Period" }),
+            summary: fields.text({ label: "Summary", multiline: true }),
+          }),
+          { label: "Experience (CV)", itemLabel: (p) => p.fields.role.value },
+        ),
+        howIWork: fields.array(
+          fields.object({
+            title: fields.text({ label: "Principle" }),
+            text: fields.text({ label: "Explanation", multiline: true }),
+          }),
+          { label: "How I work", itemLabel: (p) => p.fields.title.value },
+        ),
         leadership: fields.array(
           fields.object({
             title: fields.text({ label: "Title" }),

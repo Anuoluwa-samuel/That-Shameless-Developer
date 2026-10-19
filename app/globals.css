@@ -180,3 +180,18 @@
     text-align: left;
   }
 }
+
+/* Print (and the generated cv.pdf): always light, no site chrome. */
+@media print {
+  :root[data-theme] {
+    --bg: #ffffff;
+    --fg: #000000;
+    --muted: #444444;
+    --accent: #1d4ed8;
+    --surface: #f4f4f4;
+    --border: #cccccc;
+  }
+  body {
+    font-size: 11pt;
+  }
+}

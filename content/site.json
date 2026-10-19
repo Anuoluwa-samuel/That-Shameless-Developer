@@ -29,7 +29,10 @@
         "CRISP-DM"
       ]
     },
-    { "group": "Payments", "items": ["Paystack"] }
+    {
+      "group": "Payments",
+      "items": ["Paystack"]
+    }
   ],
   "leadership": [
     {
@@ -43,6 +46,34 @@
       "org": "Association of Computing Students (ACOMS), FUTA",
       "period": "TODO(ayomide): session / year",
       "summary": "TODO(ayomide): one or two sentences on the election you ran."
+    }
+  ],
+  "story": "I'm Ayomide, also known as Tubayox: a Computer Science student at the Federal University of Technology, Akure (FUTA) in Nigeria. I build full-stack web products and applied machine learning systems, and I care about finishing them: writing the PRD, designing the schema, building the interface and deploying something real people can use.\n\nSo far that means a live portfolio site for a photographer with its own admin dashboard, a ticketing platform that is in active development, a product-design case study for football e-ticketing, and my final-year project: a machine learning system that predicts student dropout risk.\n\nI have also held leadership roles: Faculty President of the School of Computing, and Chairman of the ACOMS Electoral Committee. They are where I practise the part of shipping that is not code: process, fairness, deadlines and people.\n\nTODO(ayomide): one personal paragraph on why you build, and what you want to work on next.",
+  "education": [
+    {
+      "school": "Federal University of Technology, Akure (FUTA)",
+      "degree": "Computer Science",
+      "period": "TODO(ayomide): years attended",
+      "note": "Final-year student. Final-year project: Student Dropout Risk Prediction System. TODO(ayomide): confirm degree title, class of degree and graduation year."
+    }
+  ],
+  "experience": [],
+  "howIWork": [
+    {
+      "title": "Start from the PRD",
+      "text": "I write down who the product is for, the rules it must enforce and what ships in which phase before I write code. The football e-ticketing PRD and its 12-week plan came first, and the build follows from them."
+    },
+    {
+      "title": "Enforce rules where they cannot be bypassed",
+      "text": "In ArenaPass, roles are checked in middleware for a good experience and again in Postgres Row Level Security, so a bug in a page cannot leak data."
+    },
+    {
+      "title": "Measure before claiming",
+      "text": "I moved the photographer's database closer to its servers and measured page render from Lagos before and after. On the ML project I state that the headline results are on augmented data."
+    },
+    {
+      "title": "Ship, then harden",
+      "text": "Real users find real problems. After launch I tightened the admin: strong secrets required, shared rate limits and session invalidation on password change."
     }
   ]
 }
