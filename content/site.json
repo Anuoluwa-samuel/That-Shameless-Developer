@@ -1,6 +1,6 @@
 {
   "name": "Ogunyemi Samuel Ayomide",
-  "shortName": "Ayomide",
+  "shortName": "That Shameless Dev",
   "handle": "Tubayox",
   "role": "Full-stack & machine learning engineer",
   "positioning": "I ship complete, working products: from the PRD to the database to the deployed app.",
@@ -13,11 +13,22 @@
   "skills": [
     {
       "group": "Web",
-      "items": ["Next.js", "TypeScript", "Node.js", "Express", "Tailwind CSS"]
+      "items": [
+        "Next.js",
+        "TypeScript",
+        "Node.js",
+        "Express",
+        "Tailwind CSS"
+      ]
     },
     {
       "group": "Data & backend",
-      "items": ["Postgres", "Supabase (RLS)", "SQLite", "Flask"]
+      "items": [
+        "Postgres",
+        "Supabase (RLS)",
+        "SQLite",
+        "Flask"
+      ]
     },
     {
       "group": "Machine learning",
@@ -31,21 +42,9 @@
     },
     {
       "group": "Payments",
-      "items": ["Paystack"]
-    }
-  ],
-  "leadership": [
-    {
-      "title": "Faculty President, School of Computing",
-      "org": "Federal University of Technology, Akure",
-      "period": "TODO(ayomide): years held",
-      "summary": "TODO(ayomide): one or two sentences on what you led and delivered."
-    },
-    {
-      "title": "Chairman, ACOMS Electoral Committee",
-      "org": "Association of Computing Students (ACOMS), FUTA",
-      "period": "TODO(ayomide): session / year",
-      "summary": "TODO(ayomide): one or two sentences on the election you ran."
+      "items": [
+        "Paystack"
+      ]
     }
   ],
   "story": "I'm Ayomide, also known as Tubayox: a Computer Science student at the Federal University of Technology, Akure (FUTA) in Nigeria. I build full-stack web products and applied machine learning systems, and I care about finishing them: writing the PRD, designing the schema, building the interface and deploying something real people can use.\n\nSo far that means a live portfolio site for a photographer with its own admin dashboard, a ticketing platform that is in active development, a product-design case study for football e-ticketing, and my final-year project: a machine learning system that predicts student dropout risk.\n\nI have also held leadership roles: Faculty President of the School of Computing, and Chairman of the ACOMS Electoral Committee. They are where I practise the part of shipping that is not code: process, fairness, deadlines and people.\n\nTODO(ayomide): one personal paragraph on why you build, and what you want to work on next.",
@@ -74,6 +73,20 @@
     {
       "title": "Ship, then harden",
       "text": "Real users find real problems. After launch I tightened the admin: strong secrets required, shared rate limits and session invalidation on password change."
+    }
+  ],
+  "leadership": [
+    {
+      "title": "Faculty President, School of Computing",
+      "org": "Federal University of Technology, Akure",
+      "period": "TODO(ayomide): years held",
+      "summary": "TODO(ayomide): one or two sentences on what you led and delivered."
+    },
+    {
+      "title": "Chairman, ACOMS Electoral Committee",
+      "org": "Association of Computing Students (ACOMS), FUTA",
+      "period": "TODO(ayomide): session / year",
+      "summary": "TODO(ayomide): one or two sentences on the election you ran."
     }
   ]
 }
