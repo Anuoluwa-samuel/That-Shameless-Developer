@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useId } from "react";
 import { sendMessage, type ContactState } from "@/app/(site)/contact/actions";
 
 const initial: ContactState = { status: "idle" };
@@ -17,6 +17,7 @@ function mailtoHref(email: string, v?: ContactState["values"]): string {
 }
 
 export function ContactForm({ email }: { email: string | null }) {
+  const uid = useId();
   const [state, action, pending] = useActionState(sendMessage, initial);
 
   if (state.status === "sent") {
@@ -60,65 +61,65 @@ export function ContactForm({ email }: { email: string | null }) {
       </div>
 
       <div>
-        <label htmlFor="name" className="text-sm font-medium">
+        <label htmlFor={`${uid}-name`} className="text-sm font-medium">
           Name
         </label>
         <input
-          id="name"
+          id={`${uid}-name`}
           name="name"
           type="text"
           autoComplete="name"
           required
           defaultValue={v?.name}
           aria-invalid={state.errors?.name ? true : undefined}
-          aria-describedby={state.errors?.name ? "name-error" : undefined}
+          aria-describedby={state.errors?.name ? `${uid}-name-error` : undefined}
           className={field}
         />
         {state.errors?.name ? (
-          <p id="name-error" className="text-danger mt-2 text-sm">
+          <p id={`${uid}-name-error`} className="text-danger mt-2 text-sm">
             {state.errors.name}
           </p>
         ) : null}
       </div>
 
       <div>
-        <label htmlFor="email" className="text-sm font-medium">
+        <label htmlFor={`${uid}-email`} className="text-sm font-medium">
           Email
         </label>
         <input
-          id="email"
+          id={`${uid}-email`}
           name="email"
           type="email"
           autoComplete="email"
           required
           defaultValue={v?.email}
           aria-invalid={state.errors?.email ? true : undefined}
-          aria-describedby={state.errors?.email ? "email-error" : undefined}
+          aria-describedby={state.errors?.email ? `${uid}-email-error` : undefined}
           className={field}
         />
         {state.errors?.email ? (
-          <p id="email-error" className="text-danger mt-2 text-sm">
+          <p id={`${uid}-email-error`} className="text-danger mt-2 text-sm">
             {state.errors.email}
           </p>
         ) : null}
       </div>
 
       <div>
-        <label htmlFor="message" className="text-sm font-medium">
+        <label htmlFor={`${uid}-message`} className="text-sm font-medium">
           Message
         </label>
         <textarea
-          id="message"
+          id={`${uid}-message`}
           name="message"
           rows={7}
           required
           defaultValue={v?.message}
           aria-invalid={state.errors?.message ? true : undefined}
-          aria-describedby={state.errors?.message ? "message-error" : undefined}
+          aria-describedby={state.errors?.message ? `${uid}-message-error` : undefined}
           className={field}
         />
         {state.errors?.message ? (
-          <p id="message-error" className="text-danger mt-2 text-sm">
+          <p id={`${uid}-message-error`} className="text-danger mt-2 text-sm">
             {state.errors.message}
           </p>
         ) : null}

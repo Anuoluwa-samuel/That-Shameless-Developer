@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ContactTrigger } from "@/components/contact/contact-dialog";
 import { Container } from "@/components/layout/container";
 import { PageHeader } from "@/components/layout/page-header";
 import { clean } from "@/lib/format";
@@ -132,9 +133,9 @@ export default function AboutPage() {
               CV
             </Link>
             , or{" "}
-            <Link href="/contact" className="text-accent underline underline-offset-4">
+            <ContactTrigger className="text-accent underline underline-offset-4">
               get in touch
-            </Link>
+            </ContactTrigger>
             .
           </p>
         </Block>

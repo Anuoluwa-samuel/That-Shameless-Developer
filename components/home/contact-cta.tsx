@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { ContactTrigger } from "@/components/contact/contact-dialog";
 import { Container } from "@/components/layout/container";
 import { clean } from "@/lib/format";
 import { site } from "@/lib/site";
@@ -18,12 +18,9 @@ export function ContactCTA() {
           I&apos;m open to graduate full-stack and ML roles, and to freelance projects.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
-          <Link
-            href="/contact"
-            className="bg-accent text-accent-fg inline-flex h-12 items-center px-7 text-sm font-medium transition-opacity hover:opacity-90"
-          >
+          <ContactTrigger className="bg-accent text-accent-fg inline-flex h-12 items-center px-7 text-sm font-medium transition-opacity hover:opacity-90">
             Get in touch
-          </Link>
+          </ContactTrigger>
           {email ? (
             <a
               href={`mailto:${email}`}
