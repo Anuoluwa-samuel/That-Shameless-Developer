@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Reveal } from "@/components/motion/reveal";
 import { ProjectCard } from "@/components/work/project-card";
 import type { Project } from "@/lib/schema";
 import { Section } from "./section";
@@ -20,9 +19,7 @@ export function FeaturedProjects({ projects }: { projects: Project[] }) {
       <ul className="grid gap-5 lg:grid-cols-3">
         {projects.map((p) => (
           <li key={p.slug}>
-            <Reveal className="h-full">
-              <ProjectCard project={p} />
-            </Reveal>
+            <ProjectCard project={p} />
           </li>
         ))}
       </ul>

@@ -34,7 +34,7 @@ export function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
-      className="text-muted hover:text-fg border-border inline-flex h-8 w-8 items-center justify-center rounded-full border transition-colors sm:h-9 sm:w-9"
+      className="text-muted hover:text-fg border-control inline-flex h-8 w-8 items-center justify-center rounded-full border transition-colors sm:h-9 sm:w-9"
     >
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
         <circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.5" />

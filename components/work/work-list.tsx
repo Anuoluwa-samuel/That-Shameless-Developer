@@ -34,7 +34,7 @@ export function WorkList({ projects }: { projects: ProjectCardData[] }) {
               className={`border px-4 py-2 font-mono text-xs transition-colors ${
                 pressed
                   ? "border-accent bg-accent text-accent-fg"
-                  : "text-muted hover:text-fg border-border"
+                  : "text-muted hover:text-fg border-control"
               }`}
             >
               {f} <span aria-hidden="true">· {count}</span>
@@ -48,7 +48,7 @@ export function WorkList({ projects }: { projects: ProjectCardData[] }) {
       <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {shown.map((p) => (
           <li key={p.slug}>
-            <ProjectCard project={p} />
+            <ProjectCard project={p} level={2} />
           </li>
         ))}
       </ul>

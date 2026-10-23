@@ -17,7 +17,15 @@ export type ProjectCardData = Pick<
   | "coverAlt"
 >;
 
-export function ProjectCard({ project }: { project: ProjectCardData }) {
+export function ProjectCard({
+  project,
+  level = 3,
+}: {
+  project: ProjectCardData;
+  /** Heading level for the title: 2 when the card sits directly under the page h1. */
+  level?: 2 | 3;
+}) {
+  const Heading = level === 2 ? "h2" : "h3";
   const date = formatMonth(project.date);
   return (
     <article className="group border-border bg-surface hover:border-accent relative flex h-full flex-col border p-5 transition-colors sm:p-6">
@@ -36,14 +44,14 @@ export function ProjectCard({ project }: { project: ProjectCardData }) {
         <StatusBadge status={project.status} />
         {date ? <span className="text-muted font-mono text-xs">{date}</span> : null}
       </div>
-      <h3 className="font-display mt-4 text-xl">
+      <Heading className="font-display mt-4 text-xl">
         <Link
           href={`/work/${project.slug}`}
           className="after:absolute after:inset-0 after:content-['']"
         >
           {project.title}
         </Link>
-      </h3>
+      </Heading>
       <p className="text-muted mt-3 text-sm">{project.summary}</p>
       <ul className="mt-auto flex flex-wrap gap-x-3 gap-y-1 pt-5" aria-label="Stack">
         {project.stack.slice(0, 5).map((tech) => (

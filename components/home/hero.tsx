@@ -25,7 +25,7 @@ export function Hero() {
           <a
             href="/cv.pdf"
             download
-            className="hover:border-accent border-border inline-flex h-12 items-center border px-7 text-sm font-medium transition-colors"
+            className="hover:border-accent border-control inline-flex h-12 items-center border px-7 text-sm font-medium transition-colors"
           >
             Download CV
           </a>

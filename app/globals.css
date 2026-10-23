@@ -6,6 +6,8 @@
   --bg: #0a0a0b;
   --surface: #121215;
   --border: #26262c;
+  --danger: #ff7a7a;
+  --control: #70707a; /* >= 3:1 against bg and surface (WCAG 1.4.11) for control outlines */
   --fg: #f3f2ee;
   --muted: #a3a3ab;
   --accent: #5a8dff;
@@ -18,6 +20,8 @@
   --bg: #fafaf7;
   --surface: #f0efea;
   --border: #d9d8d1;
+  --danger: #b42318;
+  --control: #78787f;
   --fg: #0b0b0d;
   --muted: #55555c;
   --accent: #1d4ed8;
@@ -39,6 +43,8 @@
   --color-bg: var(--bg);
   --color-surface: var(--surface);
   --color-border: var(--border);
+  --color-control: var(--control);
+  --color-danger: var(--danger);
   --color-fg: var(--fg);
   --color-muted: var(--muted);
   --color-accent: var(--accent);

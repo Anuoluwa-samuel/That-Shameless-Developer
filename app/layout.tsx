@@ -12,6 +12,7 @@ const display = Fraunces({
 const sans = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const mono = JetBrains_Mono({
   subsets: ["latin"],
+  weight: "400",
   variable: "--font-jetbrains",
   display: "swap",
 });
@@ -55,7 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         {children}
-        <Analytics />
+        {process.env.VERCEL ? <Analytics /> : null}
       </body>
     </html>
   );

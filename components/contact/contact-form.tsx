@@ -6,7 +6,7 @@ import { sendMessage, type ContactState } from "@/app/(site)/contact/actions";
 const initial: ContactState = { status: "idle" };
 
 const field =
-  "mt-2 w-full border border-border bg-surface px-4 py-3 text-base placeholder:text-muted aria-[invalid=true]:border-red-500";
+  "mt-2 w-full border border-control bg-surface px-4 py-3 text-base placeholder:text-muted aria-[invalid=true]:border-danger";
 
 function mailtoHref(email: string, v?: ContactState["values"]): string {
   const subject = encodeURIComponent(
@@ -75,7 +75,7 @@ export function ContactForm({ email }: { email: string | null }) {
           className={field}
         />
         {state.errors?.name ? (
-          <p id="name-error" className="mt-2 text-sm text-red-500">
+          <p id="name-error" className="text-danger mt-2 text-sm">
             {state.errors.name}
           </p>
         ) : null}
@@ -97,7 +97,7 @@ export function ContactForm({ email }: { email: string | null }) {
           className={field}
         />
         {state.errors?.email ? (
-          <p id="email-error" className="mt-2 text-sm text-red-500">
+          <p id="email-error" className="text-danger mt-2 text-sm">
             {state.errors.email}
           </p>
         ) : null}
@@ -118,7 +118,7 @@ export function ContactForm({ email }: { email: string | null }) {
           className={field}
         />
         {state.errors?.message ? (
-          <p id="message-error" className="mt-2 text-sm text-red-500">
+          <p id="message-error" className="text-danger mt-2 text-sm">
             {state.errors.message}
           </p>
         ) : null}

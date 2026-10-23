@@ -3,11 +3,16 @@ import { PROJECT_STATUSES, PROJECT_TAGS } from "@/lib/schema";
 
 const repo = process.env.NEXT_PUBLIC_KEYSTATIC_GITHUB_REPO; // "owner/name"
 
+// GitHub mode in production (edits become commits and trigger a redeploy). Set
+// KEYSTATIC_STORAGE=github to use it from `npm run dev` too, e.g. for the one-time GitHub App setup.
+const useGithub =
+  repo !== undefined &&
+  (process.env.NODE_ENV === "production" || process.env.KEYSTATIC_STORAGE === "github");
+
 export default config({
-  storage:
-    process.env.NODE_ENV === "production" && repo
-      ? { kind: "github", repo: repo as `${string}/${string}` }
-      : { kind: "local" },
+  storage: useGithub
+    ? { kind: "github", repo: repo as `${string}/${string}` }
+    : { kind: "local" },
   ui: { brand: { name: "Ayomide — content" } },
   collections: {
     projects: collection({
