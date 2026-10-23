@@ -26,16 +26,16 @@ npm run dev                     # http://localhost:3000
 
 ## Environment variables
 
-| Variable                                 | Needed for                                                                  |
-| ---------------------------------------- | --------------------------------------------------------------------------- |
-| `NEXT_PUBLIC_SITE_URL`                   | Canonical URLs, sitemap, OG images and JSON-LD. **Set to the live domain.** |
-| `RESEND_API_KEY`                         | Sending contact-form email. Without it the form shows a mailto fallback.    |
-| `CONTACT_TO_EMAIL`                       | Where contact messages are delivered                                        |
-| `CONTACT_FROM_EMAIL`                     | Verified Resend sender, e.g. `Portfolio <hello@yourdomain.com>`             |
-| `NEXT_PUBLIC_KEYSTATIC_GITHUB_REPO`      | `owner/repo` the production admin commits to                                |
-| `KEYSTATIC_GITHUB_CLIENT_ID` / `_SECRET` | GitHub App credentials for the admin (see below)                            |
-| `KEYSTATIC_SECRET`                       | Session secret for the admin                                                |
-| `NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG`  | GitHub App slug                                                             |
+| Variable                                 | Needed for                                                                                                                                        |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_SITE_URL`                   | Canonical URLs, sitemap, OG images and JSON-LD. **Set to the live domain.**                                                                       |
+| `RESEND_API_KEY`                         | Sending contact-form email. Without it the form shows a mailto fallback.                                                                          |
+| `CONTACT_TO_EMAIL`                       | Where contact messages are delivered                                                                                                              |
+| `CONTACT_FROM_EMAIL`                     | Verified Resend sender, e.g. `Portfolio <hello@yourdomain.com>`                                                                                   |
+| `NEXT_PUBLIC_CMS_REPO`                   | `owner/repo` the production admin commits to                                                                                                      |
+| `KEYSTATIC_GITHUB_CLIENT_ID` / `_SECRET` | GitHub App credentials for the admin (see below)                                                                                                  |
+| `KEYSTATIC_SECRET`                       | Session secret for the admin                                                                                                                      |
+| `NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG`  | Optional. Only used for an "install the app" button. Vercel warns about this name (it contains `KEY`), so you can leave it out of the deployment. |
 
 ## Content and the admin
 
@@ -88,12 +88,12 @@ The schema lives in `lib/schema.ts` (Zod) and is mirrored for the admin form in 
 The admin needs a GitHub App so it can commit on your behalf. Only GitHub users with write access to
 the repository can save changes.
 
-1. In `.env.local` set `NEXT_PUBLIC_KEYSTATIC_GITHUB_REPO=owner/repo` and `NEXT_PUBLIC_KEYSTATIC_STORAGE=github`.
+1. In `.env.local` set `NEXT_PUBLIC_CMS_REPO=owner/repo` and `NEXT_PUBLIC_CMS_STORAGE=github`.
 2. Run `npm run dev`, open `/keystatic` and follow the **Create GitHub App** prompt. Keystatic writes the
    credentials to your local env file.
 3. Copy `KEYSTATIC_GITHUB_CLIENT_ID`, `KEYSTATIC_GITHUB_CLIENT_SECRET`, `KEYSTATIC_SECRET` and
-   `NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG` into the Vercel project's environment variables, together
-   with `NEXT_PUBLIC_KEYSTATIC_GITHUB_REPO`.
+   into the Vercel project's environment variables, together with `NEXT_PUBLIC_CMS_REPO`. Skip
+   `NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG`: it is optional, and Vercel warns about it.
 4. Install the GitHub App on the repository, then visit `https://<your-domain>/keystatic`.
 
 ## CV
