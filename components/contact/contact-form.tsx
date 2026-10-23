@@ -2,6 +2,7 @@
 
 import { useActionState, useId } from "react";
 import { sendMessage, type ContactState } from "@/app/(site)/contact/actions";
+import { Button } from "@/components/ui/button";
 
 const initial: ContactState = { status: "idle" };
 
@@ -126,13 +127,9 @@ export function ContactForm({ email }: { email: string | null }) {
       </div>
 
       <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
-        <button
-          type="submit"
-          disabled={pending}
-          className="bg-accent text-accent-fg inline-flex h-12 items-center px-7 text-sm font-medium transition-opacity hover:opacity-90 disabled:opacity-60"
-        >
+        <Button type="submit" disabled={pending} className="h-12 rounded-none px-7">
           {pending ? "Sending…" : "Send message"}
-        </button>
+        </Button>
         {email ? (
           <a
             href={mailtoHref(email, v)}

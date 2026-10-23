@@ -96,6 +96,18 @@ the repository can save changes.
    `NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG`: it is optional, and Vercel warns about it.
 4. Install the GitHub App on the repository, then visit `https://<your-domain>/keystatic`.
 
+## UI components (shadcn structure)
+
+`components.json`, `lib/utils.ts` (`cn`) and `components/ui/` follow the shadcn layout, so `npx shadcn add <component>`
+works. The shadcn colour tokens (`--color-primary`, `--color-input`, ...) are aliased to this site's palette in
+`app/globals.css`. If the CLI adds new tokens there, keep the aliases pointing at the site variables.
+
+- `components/ui/button.tsx`: shadcn Button, used by the contact form.
+- `components/ui/contact-with-globe.tsx`: the `/contact` page layout (server component).
+- `components/ui/globe-slot.tsx` and `globe-wireframe.tsx`: the decorative globe. It loads only when mostly on
+  screen and the browser is idle, redraws at about 30fps, bundles its map data (no CDN request) and does not
+  spin for visitors who prefer reduced motion.
+
 ## CV
 
 `/cv` is the web résumé, built from the same content as the rest of the site. `public/cv.pdf` is

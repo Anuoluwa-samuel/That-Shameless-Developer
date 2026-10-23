@@ -45,6 +45,18 @@
   --color-border: var(--border);
   --color-control: var(--control);
   --color-danger: var(--danger);
+
+  /* shadcn token names, mapped onto this site's palette so shadcn components match it. */
+  --color-background: var(--bg);
+  --color-primary: var(--accent);
+  --color-primary-foreground: var(--accent-fg);
+  --color-secondary: var(--surface);
+  --color-secondary-foreground: var(--fg);
+  --color-destructive: var(--danger);
+  --color-destructive-foreground: var(--bg);
+  --color-accent-foreground: var(--accent-fg);
+  --color-input: var(--control);
+  --color-ring: var(--ring);
   --color-fg: var(--fg);
   --color-muted: var(--muted);
   --color-accent: var(--accent);
