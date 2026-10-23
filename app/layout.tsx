@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
 import { site, siteUrl } from "@/lib/site";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const display = Fraunces({
@@ -20,6 +21,15 @@ export const metadata: Metadata = {
   title: { default: `${site.name} — ${site.role}`, template: `%s — ${site.shortName}` },
   description: site.positioning,
   alternates: { canonical: "/" },
+  openGraph: {
+    title: `${site.name} — ${site.role}`,
+    description: site.positioning,
+    url: "/",
+    siteName: site.name,
+    type: "website",
+    locale: "en_GB",
+  },
+  twitter: { card: "summary_large_image" },
 };
 
 export const viewport: Viewport = {
@@ -43,7 +53,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }

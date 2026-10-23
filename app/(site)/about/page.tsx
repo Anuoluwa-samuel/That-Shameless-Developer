@@ -3,13 +3,14 @@ import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { PageHeader } from "@/components/layout/page-header";
 import { clean } from "@/lib/format";
+import { pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "About",
   description: `${site.name}: a Computer Science student at FUTA building full-stack products and applied ML systems.`,
-  alternates: { canonical: "/about" },
-};
+  path: "/about",
+});
 
 function Block({
   id,

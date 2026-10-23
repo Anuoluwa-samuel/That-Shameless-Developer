@@ -41,3 +41,10 @@ Every placeholder is marked `TODO(ayomide):` in the source. Search for it to fin
 - [ ] Experience (CV): add internships/jobs, if any (empty today, so the section is hidden)
 - [ ] Replace `public/cv.pdf` if you prefer your own layout. Otherwise run `npm run build && npm run cv:pdf` after editing content, to regenerate it from the web résumé.
 - [ ] Resend: set `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` on Vercel (until then the form shows the mailto fallback)
+
+## SEO and deployment
+
+- [ ] Production domain: set `NEXT_PUBLIC_SITE_URL` on Vercel (canonical URLs, sitemap, OG and JSON-LD all use it; locally it falls back to http://localhost:3000)
+- [ ] Add `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` on Vercel
+- [ ] Enable Web Analytics in the Vercel project (the `<Analytics />` component is already in place)
+- [ ] Add GitHub/LinkedIn/email to Site settings: they feed the Person JSON-LD `sameAs`/`email` automatically once real

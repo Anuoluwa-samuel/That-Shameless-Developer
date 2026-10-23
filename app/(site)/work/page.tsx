@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { Container } from "@/components/layout/container";
 import { WorkList } from "@/components/work/work-list";
 import { getProjects } from "@/lib/content";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Work",
   description:
     "Full-stack products and applied machine learning projects, with engineering write-ups.",
-  alternates: { canonical: "/work" },
-};
+  path: "/work",
+});
 
 export default async function WorkPage() {
   const projects = await getProjects();

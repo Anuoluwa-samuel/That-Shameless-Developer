@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { getProjects } from "@/lib/content";
 import { clean, formatMonth, statusLabel } from "@/lib/format";
+import { pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "CV",
   description: `Résumé of ${site.name}: education, projects, leadership and skills.`,
-  alternates: { canonical: "/cv" },
-};
+  path: "/cv",
+});
 
 function Heading({ children }: { children: React.ReactNode }) {
   return (

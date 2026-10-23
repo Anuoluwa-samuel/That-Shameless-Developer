@@ -7,10 +7,13 @@ import { MetricList } from "@/components/case-study/metric-list";
 import { SectionNav } from "@/components/case-study/section-nav";
 import { StackTags } from "@/components/case-study/stack-tags";
 import { Container } from "@/components/layout/container";
+import { JsonLd } from "@/components/seo/json-ld";
 import { StatusBadge } from "@/components/work/status-badge";
 import { getProject, getProjects, splitSections } from "@/lib/content";
 import { formatMonth } from "@/lib/format";
+import { creativeWorkJsonLd } from "@/lib/jsonld";
 import { Prose } from "@/lib/mdx";
+import { pageMetadata } from "@/lib/seo";
 
 type Params = { slug: string };
 
@@ -28,11 +31,12 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = await getProject(slug);
   if (!project) return {};
-  return {
+  return pageMetadata({
     title: project.title,
     description: project.summary,
-    alternates: { canonical: `/work/${project.slug}` },
-  };
+    path: `/work/${project.slug}`,
+    type: "article",
+  });
 }
 
 export default async function CaseStudyPage({ params }: { params: Promise<Params> }) {
@@ -45,6 +49,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<Params
 
   return (
     <Container as="article" className="py-12 sm:py-20">
+      <JsonLd data={creativeWorkJsonLd(project)} />
       <Link href="/work" className="text-muted hover:text-fg font-mono text-xs">
         ← All work
       </Link>
