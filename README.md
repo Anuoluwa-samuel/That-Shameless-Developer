@@ -88,7 +88,7 @@ The schema lives in `lib/schema.ts` (Zod) and is mirrored for the admin form in 
 The admin needs a GitHub App so it can commit on your behalf. Only GitHub users with write access to
 the repository can save changes.
 
-1. In `.env.local` set `NEXT_PUBLIC_KEYSTATIC_GITHUB_REPO=owner/repo` and `KEYSTATIC_STORAGE=github`.
+1. In `.env.local` set `NEXT_PUBLIC_KEYSTATIC_GITHUB_REPO=owner/repo` and `NEXT_PUBLIC_KEYSTATIC_STORAGE=github`.
 2. Run `npm run dev`, open `/keystatic` and follow the **Create GitHub App** prompt. Keystatic writes the
    credentials to your local env file.
 3. Copy `KEYSTATIC_GITHUB_CLIENT_ID`, `KEYSTATIC_GITHUB_CLIENT_SECRET`, `KEYSTATIC_SECRET` and
