@@ -7,7 +7,14 @@ import { site } from "@/lib/site";
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ContactDialogProvider email={clean(site.email)}>
+    <ContactDialogProvider
+      contact={{
+        email: clean(site.email),
+        github: clean(site.links.github),
+        linkedin: clean(site.links.linkedin),
+        location: site.location,
+      }}
+    >
       <SkipLink />
       <SiteHeader />
       <main id="main">{children}</main>

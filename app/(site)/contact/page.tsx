@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ContactWithGlobe from "@/components/ui/contact-with-globe";
+import { contactCopy } from "@/lib/contact-copy";
 import { clean } from "@/lib/format";
 import { pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -15,9 +16,9 @@ export default function ContactPage() {
   return (
     <ContactWithGlobe
       titleAs="h1"
-      subtitle="Contact"
-      title="Let's talk"
-      description="Hiring for a graduate full-stack or ML role, or have something to build? Tell me what you need and I'll reply."
+      subtitle={contactCopy.subtitle}
+      title={contactCopy.title}
+      description={contactCopy.description}
       email={clean(site.email)}
       github={clean(site.links.github)}
       linkedin={clean(site.links.linkedin)}

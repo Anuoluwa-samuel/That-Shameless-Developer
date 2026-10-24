@@ -12,20 +12,28 @@ import {
   type MouseEvent,
   type ReactNode,
 } from "react";
+import { contactCopy } from "@/lib/contact-copy";
 
-// The form (and its server action) is only fetched the first time the dialog opens.
-const ContactForm = dynamic(() => import("./contact-form").then((m) => m.ContactForm), {
+// The contact layout (form, server action, globe) is only fetched the first time the dialog opens.
+const ContactWithGlobe = dynamic(() => import("@/components/ui/contact-with-globe"), {
   ssr: false,
   loading: () => <p className="text-muted text-sm">Loading…</p>,
 });
 
+export type ContactDetails = {
+  email: string | null;
+  github: string | null;
+  linkedin: string | null;
+  location: string | null;
+};
+
 const ContactDialogContext = createContext<(() => void) | null>(null);
 
 export function ContactDialogProvider({
-  email,
+  contact,
   children,
 }: {
-  email: string | null;
+  contact: ContactDetails;
   children: ReactNode;
 }) {
   const ref = useRef<HTMLDialogElement>(null);
@@ -49,44 +57,33 @@ export function ContactDialogProvider({
         onClick={(e) => {
           if (e.target === ref.current) ref.current?.close();
         }}
-        className="bg-bg text-fg border-control m-auto max-h-[90dvh] w-[calc(100%-2rem)] max-w-xl overflow-y-auto border p-6 backdrop:bg-black/70 sm:p-8"
+        className="bg-bg text-fg border-control m-auto max-h-[90dvh] w-[calc(100%-2rem)] max-w-5xl overflow-y-auto border p-6 backdrop:bg-black/70 focus-visible:outline-none sm:p-10"
       >
         {session > 0 ? (
-          <div key={session}>
-            <div className="mb-6 flex items-start justify-between gap-4">
-              <div>
-                <p className="text-accent font-mono text-xs tracking-widest uppercase">
-                  Contact
-                </p>
-                <h2 id={titleId} className="font-display mt-2 text-2xl">
-                  Let&apos;s talk
-                </h2>
-                <p className="text-muted mt-2 text-sm">
-                  Hiring for a graduate full-stack or ML role, or have something to build?
-                </p>
-              </div>
-              <button
-                type="button"
-                onClick={() => ref.current?.close()}
-                aria-label="Close contact form"
-                className="text-muted hover:text-fg border-control inline-flex h-9 w-9 shrink-0 items-center justify-center border"
+          <div key={session} className="relative">
+            <button
+              type="button"
+              onClick={() => ref.current?.close()}
+              aria-label="Close contact form"
+              className="text-muted hover:text-fg border-control bg-bg absolute top-0 right-0 z-10 inline-flex h-9 w-9 items-center justify-center border"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="none"
+                aria-hidden="true"
               >
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 14 14"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M1 1l12 12M13 1L1 13"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                  />
-                </svg>
-              </button>
-            </div>
-            <ContactForm email={email} />
+                <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" strokeWidth="1.5" />
+              </svg>
+            </button>
+            <ContactWithGlobe
+              {...contact}
+              {...contactCopy}
+              titleId={titleId}
+              contained={false}
+              className="py-0 sm:py-0"
+            />
           </div>
         ) : null}
       </dialog>

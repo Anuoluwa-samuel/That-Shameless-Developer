@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ElementType, ReactNode } from "react";
 import * as SeparatorPrimitive from "@radix-ui/react-separator";
 import { ArrowUpRight, Mail, MapPin } from "lucide-react";
 import { ContactForm } from "@/components/contact/contact-form";
@@ -49,6 +49,10 @@ interface ContactWithGlobeProps {
   description?: string;
   /** Use "h1" when this section is the main heading of its page. */
   titleAs?: "h1" | "h2";
+  /** id for the title, so a dialog can point aria-labelledby at it. */
+  titleId?: string;
+  /** Wrap in the page container (default). Pass false inside a dialog that already has padding. */
+  contained?: boolean;
   email?: string | null;
   github?: string | null;
   linkedin?: string | null;
@@ -61,6 +65,8 @@ export default function ContactWithGlobe({
   subtitle = "Contact",
   description = "Tell me what you need and I'll reply.",
   titleAs = "h2",
+  titleId,
+  contained = true,
   email = null,
   github = null,
   linkedin = null,
@@ -68,6 +74,7 @@ export default function ContactWithGlobe({
   className,
 }: ContactWithGlobeProps) {
   const Title = titleAs;
+  const Frame: ElementType = contained ? Container : "div";
   const Sub = titleAs === "h1" ? "h2" : "h3";
   const external = [
     { label: "GitHub", href: github },
@@ -76,12 +83,14 @@ export default function ContactWithGlobe({
 
   return (
     <section className={cn("relative w-full overflow-hidden py-16 sm:py-24", className)}>
-      <Container>
+      <Frame>
         <header className="max-w-3xl">
           <p className="text-accent font-mono text-xs tracking-widest uppercase">
             {subtitle}
           </p>
-          <Title className="font-display mt-4 text-3xl">{title}</Title>
+          <Title id={titleId} className="font-display mt-4 text-3xl">
+            {title}
+          </Title>
           <p className="text-muted mt-5 text-lg">{description}</p>
         </header>
 
@@ -140,7 +149,7 @@ export default function ContactWithGlobe({
             <ContactForm email={email} />
           </div>
         </div>
-      </Container>
+      </Frame>
     </section>
   );
 }
